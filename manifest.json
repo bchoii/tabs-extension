@@ -1,0 +1,30 @@
+{
+  "name": "Tabs",
+  "description": "Tabs",
+  "version": "0.0.0.1",
+  "manifest_version": 3,
+  "permissions": [
+    "contextMenus",
+    "tabs",
+    "activeTab",
+    "clipboardWrite",
+    "clipboardRead",
+    "webRequest",
+    "downloads",
+    "bookmarks",
+    "cookies",
+    "downloads",
+    "declarativeContent",
+    "storage",
+    "scripting"
+  ],
+  "background": { "service_worker": "serviceworker.js" },
+  "host_permissions": ["*://*/*"],
+  "commands": {
+    "move-tab-to-end": {
+      "suggested_key": { "default": "Alt+W" },
+      "description": "Move Tab To End"
+    }
+  },
+  "action": {}
+}
