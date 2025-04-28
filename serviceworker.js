@@ -9,14 +9,16 @@ try {
 
   // Tabs
 
-  const closeTab = (tab) => tab && chrome.tabs.remove(tab.id);
+  function closeTab(tab) {
+    tab && chrome.tabs.remove(tab.id);
+  }
 
   chrome.tabs.onCreated.addListener(async (newTab) => {
     console.log("newTab", newTab);
     chrome.tabs.move(newTab.id, { index: -1 });
   });
 
-  const moveTabToEnd = async (currentTab) => {
+  async function moveTabToEnd(currentTab) {
     if (!currentTab) return;
     const currentIndex = currentTab.index;
     const tabs = await chrome.tabs.query({ currentWindow: true });
@@ -27,16 +29,16 @@ try {
     } catch (error) {
       chrome.tabs.update(tabs[0].id, { active: true });
     }
-  };
+  }
 
-  const getCurrentTab = async () => {
+  async function getCurrentTab() {
     const activeTabs = await chrome.tabs.query({
       active: true,
       currentWindow: true,
     });
     console.log("activeTabs", activeTabs);
     return activeTabs[0];
-  };
+  }
 
   chrome.commands.onCommand.addListener(async (command) => {
     // console.log("chrome.commands.onCommand", command);
